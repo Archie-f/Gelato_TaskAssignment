@@ -3,6 +3,7 @@ package com.testIT.step_definitions;
 import com.testIT.pages.MainPage;
 import com.testIT.utilities.Driver;
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -27,7 +28,7 @@ public class CompleteStepDefs {
     public void the_should_be_marked_as_completed(String item) {
         if (!item.isEmpty()){
             WebElement completedItem = Driver.get().findElement(By.xpath("//ul[@class='todo-list']/li[.='" + item + "']"));
-            System.out.println("completedItem.getAttribute(\"class\") = " + completedItem.getAttribute("class"));
+            Assert.assertEquals("completed",completedItem.getAttribute("class"));
         }
     }
 

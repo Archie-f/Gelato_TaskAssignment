@@ -1,5 +1,6 @@
 Feature: Creating a new toDo.
 
+  @wip
   Scenario Outline: The user should create a new toDo item
     Given the user is on the todos page
     When the user creates a new "<todo_item>"

@@ -68,9 +68,9 @@ public class MainPage {
     }
 
     public void markCompletedItem(String item){
-            WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
-            JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
-            executor.executeScript("arguments[0].click();", itemCheckBox);
+        WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
+        JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
+        executor.executeScript("arguments[0].click();", itemCheckBox);
     }
 
     public void editItem2(String oldContent, String newContent){
@@ -83,7 +83,6 @@ public class MainPage {
 
     public void editItem(String oldContent, String newContent){
         WebElement edit = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']/../.."));
-        BrowserUtils.waitFor(3);
         Actions actions = new Actions(Driver.get());
         actions.doubleClick(edit).click().sendKeys(newContent + Keys.ENTER).perform();
     }
