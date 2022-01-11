@@ -1,17 +1,5 @@
 Feature: Checking a completed toDo.
 
-
-  Scenario: The user should check the completed items
-    Given the user is on the todos page
-    And there's a created todo item list
-    When the user clicks the circle near the completed_item
-    Then the completed_item should be marked as completed
-    And todo-count should be seen as the number of active toDos
-    And the user should see the completed_item in Completed tab
-
-
-
-
   @wip
   Scenario Outline: The user should check the completed items
     Given the user is on the todos page
@@ -20,8 +8,10 @@ Feature: Checking a completed toDo.
     And todo-count should be seen as the number of active toDos
     And the user should see the "<completed_item>" in Completed list
     Examples:
-      | todo_item | completed_item |
-      | Wake up   | Wake up        |
-      | Workout   | Workout        |
-      | Shower    |                |
-      | Breakfast |                |
+      | todo_item    | completed_item |
+      | Wake up      | Wake up        |
+      | Workout      |                |
+      | Shower       | Shower         |
+      | Dress        | Dress          |
+      | Go to office |                |
+      | Work         |                |
