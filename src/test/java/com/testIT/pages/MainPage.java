@@ -77,10 +77,8 @@ public class MainPage {
     public void editItem2(String oldContent, String newContent){
         WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
         JavascriptExecutor execute = (JavascriptExecutor) Driver.get();
-        execute.executeScript("document.getElementsByClassName('edit')[0].setAttribute('value','DID_IT')");
-        //Actions action = new Actions(Driver.get());
-        //action.moveToElement(editItem).doubleClick().build().perform();
-        //editItem.sendKeys(newContent + Keys.ENTER);
+        execute.executeScript("document.getElementsByClassName('edit')[0].setAttribute('value','DENEME')");
+
     }
 
 

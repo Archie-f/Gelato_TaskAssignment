@@ -23,8 +23,7 @@ public class EditStepDefs {
     @When("the user double clicks any {string} and edits {string} with the {string}")
     public void the_user_double_clicks_any_and_edits_with_the(String itemToEdit, String oldContent, String newContent) {
         if(!itemToEdit.isEmpty()){
-            WebElement editItem = Driver.get().findElement(By.xpath("//li[.='" + itemToEdit + "']"));
-            main.editItem(oldContent,newContent);
+            main.editItem2(oldContent,newContent);
         }
     }
 
