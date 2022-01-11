@@ -24,13 +24,19 @@ public class CompleteStepDefs {
     }
 
     @Then("the {string} should be marked as completed")
-    public void the_should_be_marked_as_completed(String todoItem) {
-        WebElement completedItem = Driver.get().findElement(By.xpath("//ul[@class='todo-list']/li[.='" + todoItem + "']"));
-        System.out.println("completedItem.getAttribute(\"class\") = " + completedItem.getAttribute("class"));
+    public void the_should_be_marked_as_completed(String item) {
+        if (!item.isEmpty()){
+            WebElement completedItem = Driver.get().findElement(By.xpath("//ul[@class='todo-list']/li[.='" + item + "']"));
+            System.out.println("completedItem.getAttribute(\"class\") = " + completedItem.getAttribute("class"));
+        }
     }
 
     @Then("the user should see the {string} in Completed list")
-    public void the_user_should_see_the_in_Completed_list(String string) {
-        System.out.println("@WIP");
+    public void the_user_should_see_the_in_Completed_list(String item) {
+        if (!item.isEmpty()) {
+            main.completedTabButton.click();
+            main.checkItemListed(item);
+        }
+        main.allTabButton.click();
     }
 }

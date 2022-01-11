@@ -23,6 +23,15 @@ public class MainPage {
     @FindBy(xpath = "//span//strong")
     public WebElement activeItemNum;
 
+    @FindBy(xpath = "//a[.='All']")
+    public WebElement allTabButton;
+
+    @FindBy(xpath = "//a[.='Active']")
+    public WebElement activeTabButton;
+
+    @FindBy(xpath = "//a[.='Completed']")
+    public WebElement completedTabButton;
+
     public WebElement toDoItem;
 
 
