@@ -1,6 +1,6 @@
 Feature: Checking a completed toDo.
 
-  @wip
+
   Scenario Outline: The user should check the completed items
     Given the user is on the todos page
     When the user clicks the circle near the "<completed_item>" among the "<todo_item>" list
@@ -12,6 +12,6 @@ Feature: Checking a completed toDo.
       | Wake up      | Wake up        |
       | Workout      |                |
       | Shower       | Shower         |
-      | Dress        | Dress          |
+      | Breakfast    | Breakfast      |
       | Go to office |                |
       | Work         |                |

@@ -4,6 +4,7 @@ import com.testIT.utilities.BrowserUtils;
 import com.testIT.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,9 +33,6 @@ public class MainPage {
     @FindBy(xpath = "//a[.='Completed']")
     public WebElement completedTabButton;
 
-    public WebElement toDoItem;
-
-
 
     public void createTodoItem(String item){
         inputBox.click();
@@ -43,10 +41,19 @@ public class MainPage {
 
     public void checkItemListed(String item){
         try {
-            toDoItem = Driver.get().findElement(By.xpath("//li[.='" + item + "']"));
+            WebElement toDoItem = Driver.get().findElement(By.xpath("//li[.='" + item + "']"));
             Assert.assertTrue(toDoItem.isDisplayed());
         }catch (NoSuchElementException e){
-            System.err.println("ITEM IS NOT DISPLAYED" + e.getMessage());
+            System.err.println("ITEM IS NOT DISPLAYED - NOT SUPPOSED TO" + e.getMessage());
+        }
+    }
+
+    public void checkItemNotListed(String item){
+        try {
+            WebElement toDoItem = Driver.get().findElement(By.xpath("//li[.='" + item + "']"));
+            Assert.assertFalse(toDoItem.isDisplayed());
+        }catch (NoSuchElementException e){
+            System.err.println("ITEM IS DISPLAYED - NOT SUPPOSED TO" + e.getMessage());
         }
     }
 
@@ -65,6 +72,25 @@ public class MainPage {
             WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
             JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
             executor.executeScript("arguments[0].click();", itemCheckBox);
+    }
+
+    public void editItem2(String oldContent, String newContent){
+        WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
+        JavascriptExecutor execute = (JavascriptExecutor) Driver.get();
+        execute.executeScript("document.getElementsByClassName('edit')[0].setAttribute('value','DID_IT')");
+        //Actions action = new Actions(Driver.get());
+        //action.moveToElement(editItem).doubleClick().build().perform();
+        //editItem.sendKeys(newContent + Keys.ENTER);
+    }
+
+
+    public void editItem(String oldContent, String newContent){
+        WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
+        BrowserUtils.waitFor(3);
+        Actions action = new Actions(Driver.get());
+        action.moveToElement(editItem).doubleClick().build().perform();
+        editItem.sendKeys("" + Keys.BACK_SPACE + Keys.BACK_SPACE + Keys.BACK_SPACE);
+        editItem.sendKeys(newContent + Keys.ENTER);
     }
 
 
