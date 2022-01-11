@@ -88,6 +88,11 @@ public class MainPage {
         actions.doubleClick(edit).click().sendKeys(newContent + Keys.ENTER).perform();
     }
 
+    public void deleteItem(String itemToDelete){
+        WebElement delete = Driver.get().findElement(By.xpath("//label[.='" + itemToDelete + "']/following-sibling::button"));
+        JavascriptExecutor execute = (JavascriptExecutor) Driver.get();
+        execute.executeScript("arguments[0].click()", delete);
+    }
 
 
 

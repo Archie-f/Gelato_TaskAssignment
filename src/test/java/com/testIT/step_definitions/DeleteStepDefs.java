@@ -10,7 +10,7 @@ public class DeleteStepDefs {
     @When("the user clicks on the x button on the right side of the {string}")
     public void the_user_clicks_on_the_x_button_on_the_right_side_of_the(String itemToDelete) {
         if(!itemToDelete.isEmpty()) {
-            Driver.get().findElement(By.xpath("//label[.='" + itemToDelete + "']/following-sibling::button")).clear();
+            new MainPage().deleteItem(itemToDelete);
         }
     }
 
