@@ -8,8 +8,8 @@ Feature: Editting an existing toDo.
     Then the old "<item_to_edit>" should be replaced with the "<new_content>"
     Examples:
       | existing_item | completed | item_to_edit | new_content         |
-      | Wake up       |           | Wake up      | Woke up at 5:30     |
-      | Workout       | Workout   |              |                     |
+      | Wake up       | Wake up   | Wake up      | Woke up at 5:30     |
+      | Workout       |           |              |                     |
       | Shower        | Shower    |              |                     |
       | Breakfast     |           | Breakfast    | Breakfast at Gwen's |
       | Go to office  |           |              |                     |

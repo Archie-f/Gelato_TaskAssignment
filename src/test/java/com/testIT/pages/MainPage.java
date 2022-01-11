@@ -78,17 +78,18 @@ public class MainPage {
         WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
         JavascriptExecutor execute = (JavascriptExecutor) Driver.get();
         execute.executeScript("document.getElementsByClassName('edit')[0].setAttribute('value','DENEME')");
+        Driver.get().navigate().refresh();
 
     }
 
 
     public void editItem(String oldContent, String newContent){
-        WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
+        WebElement edit = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
         BrowserUtils.waitFor(3);
         Actions action = new Actions(Driver.get());
-        action.moveToElement(editItem).doubleClick().build().perform();
-        editItem.sendKeys("" + Keys.BACK_SPACE + Keys.BACK_SPACE + Keys.BACK_SPACE);
-        editItem.sendKeys(newContent + Keys.ENTER);
+        action.moveToElement(edit).doubleClick(edit).build().perform();
+        edit.sendKeys(Keys.BACK_SPACE);
+        edit.sendKeys(newContent + Keys.ENTER);
     }
 
 
