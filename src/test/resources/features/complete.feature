@@ -1,3 +1,4 @@
+@ui
 Feature: Checking a completed toDo.
 
 

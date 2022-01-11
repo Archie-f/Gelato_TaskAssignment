@@ -1,3 +1,4 @@
+@ui
 Feature: Editting an existing toDo.
 
 
