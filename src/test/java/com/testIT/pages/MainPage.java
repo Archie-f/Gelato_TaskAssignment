@@ -52,10 +52,10 @@ public class MainPage {
         return i;
     }
 
-    public void checkCompletedItem(String item){
-        WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
-        JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
-        executor.executeScript("arguments[0].click();", itemCheckBox);
+    public void markCompletedItem(String item){
+            WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
+            JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
+            executor.executeScript("arguments[0].click();", itemCheckBox);
     }
 
 
