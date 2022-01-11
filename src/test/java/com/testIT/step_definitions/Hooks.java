@@ -5,16 +5,19 @@ import com.testIT.utilities.Driver;
 import cucumber.api.Scenario;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
+import org.junit.AfterClass;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
     @Before
     public void setUp(){
-        // we put a logic that should apply to every scenario
+
         Driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Driver.get().manage().window().maximize();
     }
 
     @After
@@ -27,18 +30,10 @@ public class Hooks {
         }
     }
 
-    @Before("@db")
-    public void dbHook() {
-        System.out.println("creating database connection");
-        DBUtils.createConnection();
-
+    @AfterClass
+    public void closeWindow(){
+        Driver.closeDriver();
     }
 
-    @After("@db")
-    public void afterDbHook() {
-        System.out.println("closing database connection");
-        DBUtils.destroyConnection();
-
-    }
 
 }
