@@ -1,6 +1,6 @@
 Feature: Editting an existing toDo.
 
-  @wip
+
   Scenario Outline: The user should edit any existing item
     Given the user is on the todos page
     And there's an "<existing_item>" list with some are "<completed>"

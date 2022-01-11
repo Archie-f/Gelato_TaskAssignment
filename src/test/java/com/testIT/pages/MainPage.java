@@ -33,7 +33,6 @@ public class MainPage {
     @FindBy(xpath = "//a[.='Completed']")
     public WebElement completedTabButton;
 
-
     public void createTodoItem(String item){
         inputBox.click();
         inputBox.sendKeys(item + Keys.ENTER);
@@ -82,14 +81,11 @@ public class MainPage {
 
     }
 
-
     public void editItem(String oldContent, String newContent){
-        WebElement edit = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
+        WebElement edit = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']/../.."));
         BrowserUtils.waitFor(3);
-        Actions action = new Actions(Driver.get());
-        action.moveToElement(edit).doubleClick(edit).build().perform();
-        edit.sendKeys(Keys.BACK_SPACE);
-        edit.sendKeys(newContent + Keys.ENTER);
+        Actions actions = new Actions(Driver.get());
+        actions.doubleClick(edit).click().sendKeys(newContent + Keys.ENTER).perform();
     }
 
 
