@@ -1,11 +1,9 @@
-
+@wip
 Feature: Put Request
-
-  Background:
-    Given the baseURI is set
 
 
   Scenario: Verify a todo of a user is updated
+    Given the baseURI is set
     And the user sends a get request to "/todos/11" end point
     And the id of the response payload matches with the request id 11
     And the userId of the response payload is kept
