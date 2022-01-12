@@ -1,16 +1,12 @@
 package com.testIT.step_definitions;
 
+import com.testIT.pages.MainApi;
 import com.testIT.utilities.ConfigurationReader;
 import io.cucumber.java.en.*;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.junit.Assert;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.junit.Assert.*;
 
 public class ApiTest1_GetStepDefs {
@@ -25,20 +21,8 @@ public class ApiTest1_GetStepDefs {
 
     @When("the user sends a get request to {string} end point")
     public void the_user_sends_a_get_request_to_end_point(String endPoint) {
-        response = RestAssured.given().accept(ContentType.JSON)
-                .when().get(endPoint);
-    }
-
-    @Then("response status code should be {int}")
-    public void response_status_code_should_be(int statusCode) {
-        assertEquals(statusCode,response.statusCode());
-        System.out.println("Status Code = " + response.statusCode());
-    }
-
-    @Then("response content-type: {string}")
-    public void response_content_type(String contentType) {
-        assertEquals(contentType,response.contentType());
-        System.out.println("Content Type = " + response.contentType());
+        response = MainApi.sendGetRequest(endPoint);
+        MainApi.verifyStatusAndContent(200,"application/json; charset=utf-8", this.response);
     }
 
     @Then("there should be total {int} todos in the response payload")
