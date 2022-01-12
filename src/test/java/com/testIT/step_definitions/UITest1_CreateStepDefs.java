@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 import java.util.List;
 
-public class CreateStepDefs {
+public class UITest1_CreateStepDefs {
 
     MainPage main = new MainPage();
 

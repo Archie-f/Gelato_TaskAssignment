@@ -1,14 +1,11 @@
 package com.testIT.pages;
 
-import com.testIT.utilities.BrowserUtils;
 import com.testIT.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -33,11 +30,19 @@ public class MainPage {
     @FindBy(xpath = "//a[.='Completed']")
     public WebElement completedTabButton;
 
+    @FindBy(css = ".clear-completed")
+    public WebElement clearCompletedButton;
+
     public void createTodoItem(String item){
         inputBox.click();
         inputBox.sendKeys(item + Keys.ENTER);
     }
 
+    /**
+     * Verifies if the item requested is listed
+     *
+     * @param item
+     */
     public void checkItemListed(String item){
         try {
             WebElement toDoItem = Driver.get().findElement(By.xpath("//li[.='" + item + "']"));
@@ -47,6 +52,11 @@ public class MainPage {
         }
     }
 
+    /**
+     * Verifies if the item requested is NOT listed
+     *
+     * @param item
+     */
     public void checkItemNotListed(String item){
         try {
             WebElement toDoItem = Driver.get().findElement(By.xpath("//li[.='" + item + "']"));
@@ -56,10 +66,24 @@ public class MainPage {
         }
     }
 
-    public int countActiveItems(){
+    /**
+     * Gets all of the listed items and returns as List of WebElement
+     *
+     * @return itemList
+     */
+    public List<WebElement> getItems(){
         List<WebElement> itemList = Driver.get().findElements(By.cssSelector("ul.todo-list>li"));
+        return itemList;
+    }
+
+    /**
+     * Counts all of the ACTIVE items and returns the total number as int
+     *
+     * @return #ActiveItems
+     */
+    public int countActiveItems(){
         int i=0;
-        for (WebElement element : itemList) {
+        for (WebElement element : getItems()) {
             if(!element.getAttribute("class").equalsIgnoreCase("completed")){
                 i++;
             }
@@ -67,26 +91,50 @@ public class MainPage {
         return i;
     }
 
+    /**
+     * Counts all of the COMPLETED items and returns the total number as int
+     *
+     * @return #CompletedItems
+     */
+    public int countCompletedItems(){
+        int i=0;
+        for (WebElement element : getItems()) {
+            if(element.getAttribute("class").equalsIgnoreCase("completed")){
+                i++;
+            }
+        }
+        return i;
+    }
+
+    /**
+     * Counts all of the UNCOMPLETED items and returns the total number as int
+     *
+     * @return #UncompletedItems
+     */
     public void markCompletedItem(String item){
         WebElement itemCheckBox = Driver.get().findElement(By.xpath("//li[.='" + item + "']//input[@class='toggle']"));
         JavascriptExecutor executor = (JavascriptExecutor)Driver.get();
         executor.executeScript("arguments[0].click();", itemCheckBox);
     }
 
-    public void editItem2(String oldContent, String newContent){
-        WebElement editItem = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']"));
-        JavascriptExecutor execute = (JavascriptExecutor) Driver.get();
-        execute.executeScript("document.getElementsByClassName('edit')[0].setAttribute('value','DENEME')");
-        Driver.get().navigate().refresh();
-
-    }
-
+    /**
+     * Edits the item by;
+     * Deleting the old content of the requested item and writing the new content
+     *
+     * @param oldContent
+     * @param newContent
+     */
     public void editItem(String oldContent, String newContent){
         WebElement edit = Driver.get().findElement(By.xpath("//label[.='" + oldContent + "']/../.."));
         Actions actions = new Actions(Driver.get());
         actions.doubleClick(edit).click().sendKeys(newContent + Keys.ENTER).perform();
     }
 
+    /**
+     * Deletes the requested item
+     *
+     * @param itemToDelete
+     */
     public void deleteItem(String itemToDelete){
         WebElement delete = Driver.get().findElement(By.xpath("//label[.='" + itemToDelete + "']/following-sibling::button"));
         JavascriptExecutor execute = (JavascriptExecutor) Driver.get();

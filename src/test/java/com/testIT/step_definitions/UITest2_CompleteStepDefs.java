@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class CompleteStepDefs {
+public class UITest2_CompleteStepDefs {
 
     MainPage main = new MainPage();
 

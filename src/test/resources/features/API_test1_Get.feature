@@ -4,7 +4,7 @@ Feature: Get Request
   Background:
     Given the baseURI is set
 
-
+  @wip
   Scenario: Verify there are total 200 todos
     When the user sends a get request to "/todos" end point
     Then there should be total 200 todos in the response payload

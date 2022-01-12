@@ -1,5 +1,5 @@
 @ui
-Feature: Editting an existing toDo.
+Feature: Deleting an existing toDo.
 
 
   Scenario Outline: The user should edit any existing item

@@ -8,7 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class EditStepDefs {
+public class UITest3_EditStepDefs {
 
     MainPage main = new MainPage();
 
