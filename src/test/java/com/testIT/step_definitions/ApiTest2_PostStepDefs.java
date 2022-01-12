@@ -1,14 +1,10 @@
 package com.testIT.step_definitions;
 
 import com.testIT.pages.MainApi;
-import com.testIT.pages.ToDo;
 import io.cucumber.java.en.*;
-import io.restassured.response.Response;
 import static org.junit.Assert.*;
 
 public class ApiTest2_PostStepDefs {
-
-    ToDo toDo = new ToDo();
 
     @Given("the request body contains userId:{int} title:{string} and completed:{string}")
     public void the_request_body_contains_userId_title_and_completed(int userId, String title, String completed) {

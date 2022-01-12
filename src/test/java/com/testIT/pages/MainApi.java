@@ -10,10 +10,9 @@ public class MainApi {
     static Response response;
     static ToDo toDo;
 
-    public static Response sendGetRequest(String endPonit){
+    public static void sendGetRequest(String endPonit){
         response = RestAssured.given().accept(ContentType.JSON)
                 .when().get(endPonit);
-        return response;
     }
 
     public static void sendPostRequest(Object toDo, String endPoint) {
@@ -27,6 +26,12 @@ public class MainApi {
         response = RestAssured.given().contentType(ContentType.JSON)
                 .and().body(toDo)
                 .when().put(endPoint);
+    }
+
+    public static void sendPatchRequest(String patch, String endPoint){
+        response =  RestAssured.given().contentType(ContentType.JSON)
+                .and().body(patch)
+                .when().patch(endPoint);
     }
 
     public static Response getResponse() {

@@ -1,7 +1,6 @@
 package com.testIT.step_definitions;
 
 import com.testIT.pages.MainApi;
-import com.testIT.pages.ToDo;
 import io.cucumber.java.en.*;
 
 
@@ -25,10 +24,11 @@ public class ApiTest3_PutStepDefs {
         System.out.println("TODO = " + MainApi.getToDo().toString());
     }
 
-    @When("the user sends a put request to {string} end point for a new user")
-    public void the_user_sends_a_put_request_to_end_point_for_a_new_user(String endPoint) {
-        String finalEndPoint = endPoint + "/" + userID;
+    @When("the user sends a put request to {string} end point with the userId")
+    public void the_user_sends_a_put_request_to_end_point_with_the_userId(String endPoint) {
+        String finalEndPoint = endPoint + userID;
         MainApi.sendPutRequest(MainApi.getToDo(),finalEndPoint);
         MainApi.verifyStatusAndContent(200,"application/json; charset=utf-8",MainApi.getResponse());
     }
+
 }

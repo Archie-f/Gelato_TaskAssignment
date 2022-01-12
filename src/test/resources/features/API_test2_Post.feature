@@ -10,7 +10,7 @@ Feature: Post Request
     When the user sends a post request to "/todos" end point for a new user
     Then the response payload data should match with the request body
 
-  @wip
+
   Scenario: Verify a new todo for an existing user is created
     And the request body contains userId:17 title:"Complete all tests" and completed:"true"
     When the user sends a post request to "/todos" end point for a new user
