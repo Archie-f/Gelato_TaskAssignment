@@ -34,6 +34,11 @@ public class MainApi {
                 .when().patch(endPoint);
     }
 
+    public static void sendDeleteRequest(String endPoint){
+        response = RestAssured.given().accept(ContentType.JSON)
+                .when().delete(endPoint);
+    }
+
     public static Response getResponse() {
         return response;
     }
